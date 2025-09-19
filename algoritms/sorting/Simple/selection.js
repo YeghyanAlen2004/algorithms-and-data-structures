@@ -1,20 +1,18 @@
-const arr = [9, 1, 2, 4, 7];
-
 function selection(arr) {
-    let length = arr.length;
+    let size = arr.length;
 
-    for (let i = 0; i < length; ++i) {
-        let min = i;
-        for(let j = i + 1; j < length; ++j) {
-            if(arr[min] > arr[j]) {
-                min = j;
+    for (let i = 0; i < size; ++i) {
+        let minIndex = i;
+        for (let j = i + 1; j < size; ++j) {
+            if (arr[minIndex] > arr[j]) {
+                minIndex = j;
             }
         }
-        if (i !== min) {
-        [arr[i], arr[min]] = [arr[min], arr[i]];
-        }
+        [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]];
     }
     return arr;
 }
+
+const arr = [9, 1, 2, 4, 7];
 
 console.log(selection(arr));
