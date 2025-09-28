@@ -1,4 +1,5 @@
 MERGE SORT
+-------------------------------------------------------------------------------------------------------
 
 Merge Sort is a comparison-based divide and conquer algorithm. It divides the array into two halves, recursively sorts each half, and then merges the sorted halves into one sorted array.
 
@@ -25,8 +26,9 @@ Merge Sort is a comparison-based divide and conquer algorithm. It divides the ar
 > Stability
 
 .   Stable – equal elements retain their original relative order.
--------------------------------------------------------------------------------------------------------
+
 Quick Sort
+-------------------------------------------------------------------------------------------------------
 
 Quick Sort is a divide-and-conquer sorting algorithm. It selects a pivot element, partitions the array into two parts (less than pivot and greater than or equal to pivot), recursively sorts each part, and combines them into a sorted array.
 
