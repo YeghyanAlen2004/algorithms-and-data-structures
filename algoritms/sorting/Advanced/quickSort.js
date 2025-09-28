@@ -10,14 +10,8 @@ const partition = (arr, low, high) => {
     let i = low - 1;
     let j = high;
     while (true) {
-        do {
-            i++; 
-
-        } while (arr[i] < pivot);
-        do {
-            j--;
-        } while (arr[j] > pivot);
-
+        do { i++; } while (arr[i] < pivot);
+        do { j--; } while (arr[j] > pivot);
         if (i >= j) return j;
         [arr[i], arr[j]] = [arr[j], arr[i]];
     }
