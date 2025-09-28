@@ -25,7 +25,7 @@ Merge Sort is a comparison-based divide and conquer algorithm. It divides the ar
 > Stability
 
 .   Stable – equal elements retain their original relative order.
-
+-------------------------------------------------------------------------------------------------------
 Quick Sort
 
 Quick Sort is a divide-and-conquer sorting algorithm. It selects a pivot element, partitions the array into two parts (less than pivot and greater than or equal to pivot), recursively sorts each part, and combines them into a sorted array.
@@ -55,3 +55,11 @@ Quick Sort is a divide-and-conquer sorting algorithm. It selects a pivot element
 > Stability
 
 .   Unstable – equal elements may not retain their original relative order.
+
+
+___________________________________________________________________________________________
+| Algorithm       | Best Case | Average Case | Worst Case | Space Complexity | Stable? |
+| --------------- | --------- | ------------ | ---------- | ---------------- | ------- |
+| **Merge Sort**  | O(n log n)| O(n log n)   | O(n log n) | O(n)             | Yes     |
+| **Quick Sort**  | O(n log n)| O(n log n)   | O(n²)      | O(log n)         | No      |
+-------------------------------------------------------------------------------------------
