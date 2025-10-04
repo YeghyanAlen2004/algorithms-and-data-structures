@@ -6,48 +6,67 @@ Inspired by std::forward_list from C++ and LinkedList from Java — built from s
 
 ✨ Key Features
 --------------------------------------------------------------------------------------------
-> 💎 Clean, minimal, and modern ES2024+ design
+1.  💎 Clean, minimal, and modern ES2024+ design
 
-> 🔒 Uses private fields (#size) for true encapsulation
+2.  🔒 Uses private fields (#size) for true encapsulation
 
-> 🌀 Fully iterable (for...of, spread, Array.from)
+3.  🌀 Fully iterable (for...of, spread, Array.from)
 
-> ⚙️ Stable merge sort built-in (O(n log n))
+4.  ⚙️ Stable merge sort built-in (O(n log n))
 
-> 🔁 merge_list() — combine and sort two lists
+5.  🔁 merge_list() — combine and sort two lists
 
-> 💥 Zero dependencies — just pure JavaScript
+6.  💥 Zero dependencies — just pure JavaScript
 
-> 🧠 Fully compatible with TypeScript
+7.  🧠 Fully compatible with TypeScript
 
 📘 Type Definition
 --------------------------------------------------------------------------------------------
-class SinglyLinkedList<T> {
-  constructor(iterable?: Iterable<T>);
-  size(): number;
-  isEmpty(): boolean;
-  clear(): void;
+class SinglyLinkedList<T> { 
+    
+  constructor(iterable?: Iterable<T>); 
 
-  front(): T | undefined;
+  size(): number; 
 
-  push_front(value: T): void;
-  push_back(value: T): void;
-  pop_front(): T | undefined;
-  pop_back(): T | undefined;
+  isEmpty(): boolean; 
 
-  at(index: number): T | undefined;
-  insert(index: number, value: T): void;
-  erase(index: number): T | undefined;
-  remove(value: T, equals?: (a: T, b: T) => boolean): number;
+  clear(): void; 
 
-  reverse(): void;
-  sort(compareFn?: (a: T, b: T) => number): void;
-  merge_list(other: SinglyLinkedList<T>, compareFn?: (a: T, b: T) => number): void;
+ 
+  front(): T | undefined; 
 
-  toArray(): T[];
+ 
+  push_front(value: T): void; 
+
+  push_back(value: T): void; 
+
+  pop_front(): T | undefined; 
+
+  pop_back(): T | undefined; 
+
+ 
+  at(index: number): T | undefined; 
+
+  insert(index: number, value: T): void; 
+
+  erase(index: number): T | undefined; 
+
+  remove(value: T, equals?: (a: T, b: T) => boolean): number; 
+
+ 
+  reverse(): void; 
+
+  sort(compareFn?: (a: T, b: T) => number): void; 
+
+  merge_list(other: SinglyLinkedList<T>, compareFn?: (a: T, b: T) => number): void; 
+
+  toArray(): T[]; 
+
   static fromArray<U>(arr: U[]): SinglyLinkedList<U>;
 
+
   [Symbol.iterator](): Iterator<T>;
+
 }
 
 🚀 Quick Example
