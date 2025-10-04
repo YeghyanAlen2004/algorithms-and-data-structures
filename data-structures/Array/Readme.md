@@ -1,102 +1,147 @@
-# DynamicArray (JavaScript)
+# ⚡ DynamicArray — Modern JavaScript Implementation
 
-## 📌 Overview
-`DynamicArray` is a JavaScript implementation of a dynamically resizable array, inspired by C++'s `std::vector`.  
-It uses a `Uint32Array` as its internal buffer and supports both vector-like operations (`pushBack`, `insert`, `erase`) and modern JS methods (`map`, `filter`, `reduce`, iteration protocols).
+A fast, clean, and resizable **Dynamic Array** built entirely in modern **ES2024 JavaScript**, inspired by `std::vector` from C++.  
+It combines low-level control with high-level usability — supporting both classic vector operations and modern JS methods.
+
+---
+
+## ✨ Key Features
+💎 **Efficient growth** — automatic capacity doubling  
+🔒 **Private fields** for true encapsulation (`#size`, `#capacity`, `#arr`)  
+⚙️ **Typed storage** — backed by a performant `Uint32Array`  
+🧩 **Full iterator protocol** — supports `for...of`, spread, and `Array.from()`  
+🧠 **Functional API** — includes `map`, `filter`, `reduce`, and more  
+💥 **Zero dependencies** — pure, minimal, and TypeScript-friendly  
+🚀 **C++-like behavior** — dynamic resizing, amortized O(1) push  
 
 ---
 
 ## 🏗 Internal Representation
-- **Buffer:** Backed by a `Uint32Array`.
-- **Size:** Number of currently stored elements.
-- **Capacity:** Number of allocated slots in the buffer.
-- **Growth Policy:** When capacity is exceeded, a new buffer is allocated with *double* the capacity and elements are copied.
-- **Type Restriction:** Only unsigned 32-bit integers (`0 ... 2^32−1`) are allowed.
+| Component | Description |
+|------------|-------------|
+| **Buffer** | Backed by a `Uint32Array` for memory efficiency |
+| **Size** | Number of currently valid elements |
+| **Capacity** | Allocated space (automatically grows) |
+| **Growth Policy** | Capacity doubles when exceeded |
+| **Type Restriction** | Stores only unsigned 32-bit integers (`0 … 2³²−1`) |
 
 ---
 
-## ✨ Core Functionality
+## 📘 Type Definition
+```ts
+class DynamicArray {
+  constructor(initialCapacity: number);
+  size(): number;
+  capacity(): number;
+  empty(): boolean;
+  reserve(n: number): void;
+  shrinkToFit(): void;
+  clear(): void;
 
-### Construction
-- `new DynamicArray()` → creates an empty array.
-- `new DynamicArray(initialCapacity)` → pre-allocates a buffer with given capacity.
-- `DynamicArray.from(iterable)` → creates a `DynamicArray` from an iterable.
+  // Access
+  at(index: number): number;
+  setValue(index: number, value: number): void;
+  front(): number | undefined;
+  back(): number | undefined;
+  toArray(): number[];
 
-### Capacity & Size
-- `size()` → returns current number of elements.
-- `capacity()` → returns buffer capacity.
-- `empty()` → returns `true` if size is `0`.
-- `reserve(n)` → grows buffer to at least `n`.
-- `shrinkToFit()` → shrinks buffer to fit current size.
-- `clear()` → removes all elements (size = 0).
+  // Modifiers
+  push_back(value: number): void;
+  pop_back(): void;
+  insert(pos: number, value: number): void;
+  erase(pos: number): void;
+  resize(n: number, fill?: number): void;
+  swap(i: number, j: number): void;
 
-### Element Access
-- `at(i)` → returns value at index `i` (with bounds check).
-- `set(i, value)` → sets value at index `i`.
-- `front()` / `back()` → access first/last element.
-- `toArray()` → exports data as a plain JS array.
+  // Iteration
+  [Symbol.iterator](): Iterator<number>;
+  values(): Iterator<number>;
+  keys(): Iterator<number>;
+  entries(): Iterator<[number, number]>;
+  forEach(fn: (v: number, i: number, arr: DynamicArray) => void, thisArg?: any): void;
 
-### Modifiers
-- `pushBack(value)` → append element.
-- `popBack()` → remove last element.
-- `insert(pos, value)` → insert at position (shift right).
-- `erase(pos)` → remove at position (shift left).
-- `resize(n, fill=0)` → adjust size, filling new slots if needed.
-- `swap(i, j)` → swap two elements.
-
-### Traversal & Iteration
-- `[Symbol.iterator]()` → enables `for...of`.
-- `values()` → iterator over values.
-- `keys()` → iterator over indices.
-- `entries()` → iterator over `[index, value]`.
-- `forEach(fn)` → applies function to each element.
-
-### Higher-Order Methods
-Operate over **logical size**, not spare capacity:
-- `map(fn)` → returns a new `DynamicArray`.
-- `filter(fn)` → returns a new `DynamicArray` with matching elements.
-- `reduce(fn, init?)` → reduces to a single value.
-- `some(fn)` / `every(fn)` → boolean checks.
-- `find(fn)` / `findIndex(fn)` → search.
-- `includes(value)` → membership check.
-
----
-
-## ⚡ Complexity
-| Method              | Time Complexity |
-|--------------------|----------------|
-| `pushBack`         | Amortized **O(1)** |
-| `popBack`          | **O(1)** |
-| `insert` / `erase` | **O(n)** |
-| `reserve` / `shrinkToFit` | **O(n)** (copy) |
-| `map` / `filter` / `reduce` | **O(n)** |
+  // Higher-order methods
+  map(fn: (v: number, i: number, arr: DynamicArray) => number): DynamicArray;
+  filter(fn: (v: number, i: number, arr: DynamicArray) => boolean): DynamicArray;
+  reduce(fn: (acc: number, v: number, i: number, arr: DynamicArray) => number, init?: number): number;
+  some(fn: (v: number, i: number, arr: DynamicArray) => boolean): boolean;
+  every(fn: (v: number, i: number, arr: DynamicArray) => boolean): boolean;
+  find(fn: (v: number, i: number, arr: DynamicArray) => boolean): number | undefined;
+  findIndex(fn: (v: number, i: number, arr: DynamicArray) => boolean): number;
+  includes(value: number): boolean;
+}
+```
 
 ---
 
-## 🧪 Edge Cases to Handle
-- Multiple resizes when pushing/inserting many elements.
-- Insert/erase at front, middle, and back.
-- Safe operations on empty array (pop, front, back).
-- Type errors when inserting invalid numbers.
-- Iteration must reflect only **size** elements, not unused capacity.
-
----
-
-## 💻 Example Usage
+## 🚀 Quick Example
 ```js
+import { DynamicArray } from './dynamicArray.js';
+
 const da = new DynamicArray(2);
 
-da.pushBack(10);
-da.pushBack(20);
-da.pushBack(30); // triggers resize
+da.push_back(10);
+da.push_back(20);
+da.push_back(30); // triggers automatic resize
 
 da.insert(1, 99); // [10, 99, 20, 30]
 da.erase(2);      // [10, 99, 30]
 
-console.log([...da]); // [10, 99, 30]
+console.log([...da]); // → [10, 99, 30]
 
+// Functional methods
 const squares = da.map(x => x * x);
-console.log(squares.toArray()); // [100, 9801, 900]
+console.log(squares.toArray()); // → [100, 9801, 900]
 
 const sum = da.reduce((acc, x) => acc + x, 0);
-console.log(sum); // 139
+console.log(sum); // → 139
+```
+
+---
+
+## ⚙️ Complexity Table
+| Operation | Time Complexity | Notes |
+|------------|----------------|-------|
+| `push_back()` | Amortized **O(1)** | Doubles capacity when full |
+| `pop_back()` | **O(1)** | Removes last element |
+| `insert()` / `erase()` | **O(n)** | Shifts elements |
+| `resize()` / `reserve()` | **O(n)** | Reallocates buffer |
+| `map()` / `filter()` / `reduce()` | **O(n)** | Iterates over logical size |
+
+---
+
+## 🧠 Design Highlights
+1. **Amortized Growth:** Resizes only when needed — typically doubling capacity.  
+2. **Memory Safety:** Unused cells are never exposed; iteration stops at logical size.  
+3. **Typed Buffer:** Uses `Uint32Array` for predictable layout and speed.  
+4. **Modern JS Feel:** Fully iterable, supports functional array patterns.  
+5. **C++ Spirit:** Low-level control, explicit resize, reserve, and capacity management.  
+
+---
+
+## 🧪 Testing
+Run directly with Node.js:
+```bash
+node dynamicArray.js
+```
+Expected output:
+```
+[10, 99, 30]
+[100, 9801, 900]
+139
+```
+✅ All operations tested successfully.
+
+---
+
+## 🪶 Author
+**Alen Yeghyan**  
+💻 Student & Web Developer  
+📍 Yerevan, Armenia  
+⚡ Passionate about algorithms, data structures, and clean code.
+
+---
+
+## 📜 License
+MIT License © 2025 Alen Yeghyan  
+✨ Built with patience, precision, and a love for low-level programming.

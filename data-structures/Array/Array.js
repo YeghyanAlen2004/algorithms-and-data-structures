@@ -7,7 +7,7 @@ class DArray {
   constructor(initialCapacity) {
     if (!(Number.isInteger(initialCapacity) && initialCapacity > 0)) {
     throw new TypeError('initialCapacity must be a positive integer');
-}
+  }
 
     this.#capacity = initialCapacity;
     this.#arr = new Uint32Array(initialCapacity);
@@ -37,6 +37,9 @@ class DArray {
   }
 
   pop_back() {
+    if (this.#size === 0) {
+      return;
+    }
     --this.#size;
   }
 
@@ -105,6 +108,9 @@ class DArray {
 
         return { value: undefined, done: true };
       },
+      [Symbol.iterator]() {
+        return this;
+      }
     };
   }
 
@@ -130,7 +136,7 @@ class DArray {
 
   insert(pos, value) {
     if (pos > this.#size || pos < 0) {
-      throw new Error('Position out of raange:');
+      throw new Error('Position out of range:');
     } else if (this.#size === this.#capacity) {
       this.resize(this.CAP_EXPONENT * this.#capacity);
     }
@@ -144,14 +150,15 @@ class DArray {
   }
 
   swap(i, j) {
-    if (!(Number.isInteger(initialCapacity) && initialCapacity > 0)) {
-    throw new TypeError('initialCapacity must be a positive integer');
-}
-
-    this.#arr[i] ^= this.#arr[j];
-    this.#arr[j] ^= this.#arr[i];
-    this.#arr[i] ^= this.#arr[j];
+    if (i < 0 || j < 0 || i >= this.#size || j >= this.#size) {
+      throw new RangeError('Index out of range');
+    }
+    if (i === j) return;
+    const temp = this.#arr[i];
+    this.#arr[i] = this.#arr[j];
+    this.#arr[j] = temp;
   }
+
 
   values() {
     const val = this.#arr;
