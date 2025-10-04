@@ -48,8 +48,7 @@ class DoublyLinkedList<T> {
   [Symbol.iterator](): Iterator<T>;
 }
 🚀 Quick Example
-js
-Копировать код
+
 import { DoublyLinkedList } from './doublyLinkedList.js';
 
 const list = new DoublyLinkedList([1, 2, 3]);
@@ -68,48 +67,54 @@ list.reverse();
 list.sort();
 
 console.log([...list]); // [1, 2, 3]
+
 🧪 Running Tests
+--------------------------------------------------------------------------------------------
 To validate everything, simply run:
 
-bash
-Копировать код
 node doublyLinkedList.js
+
+
 You should see:
 
-sql
-Копировать код
 🔍 Running DoublyLinkedList tests...
 
 ✅ All manual tests completed successfully!
-🧩 Algorithms Used
-Algorithm	Purpose	Complexity	Stable
-Merge Sort	Sorting	O(n log n)	✅ Yes
-Reverse	In-place reversal	O(n)	✅ Yes
-Insert / Erase	Position-based ops	O(n)	—
-Push / Pop	Ends operations	O(1)	✅ Constant time
+
+|🧩 Algorithms Used
+|Algorithm	    |Purpose	        |   Complexity	|   Stable
+--------------------------------------------------------------------------------------------
+|Merge Sort	    |Sorting	        |   O(n log n)	|   ✅ Yes
+|Reverse        |In-place reversal	|   O(n)	    |   ✅ Yes
+|Insert / Erase |Position-based ops	|   O(n)	    |    —
+|Push / Pop	    |Ends operations	|   O(1)	    |   ✅ Constant time
 
 ⚙️ Design Notes
-Optimized traversal (chooses shortest path from head or tail)
+--------------------------------------------------------------------
+1.  Optimized traversal (chooses shortest path from head or tail)
 
-True encapsulation with private fields (#head, #tail, #size)
+2.  True encapsulation with private fields (#head, #tail, #size)
 
-Fully iterable (for...of, spread syntax [...list])
+3.  Fully iterable (for...of, spread syntax [...list])
 
-Safe node unlinking to prevent memory leaks
+4.  Safe node unlinking to prevent memory leaks
 
-Merge sort implemented recursively for simplicity and stability
+5.  Merge sort implemented recursively for simplicity and stability
 
 🧠 Author
+___________________________
 Alen Yeghyan
 💻 Student & Web Developer
 📍 Yerevan, Armenia
 ⚡ Passionate about algorithms, data structures, and elegant code design.
 
 💬 Contribute
+___________________________
 Contributions and ideas are always welcome!
 Feel free to open an issue or a pull request 🤝
 
 🪶 License
+____________________________
 MIT License © 2025 Alen Yeghyan
 
 ✨ Built with patience, precision, and a deep love for data structures.
