@@ -309,10 +309,54 @@ class SinglyLinkedList {
 
 }
 
-let s = new SinglyLinkedList([5, 6, 7, 4, 1 , 2]);
-let s1 = new SinglyLinkedList([1, 3, 5, 6, 8, 11]);
-console.log([...s]);
+// =============================== TEST SECTION ========================================
+function testLinkedList() {
+  console.log("🔍 Running SinglyLinkedList tests...\n");
 
-s.sort();
-s.merge(s1);
-console.log([...s]);
+  const list1 = new SinglyLinkedList([1, 2, 3]);
+  console.log("Initial list:", list1.toArray());
+  console.log("Size:", list1.size());
+
+  list1.push_front(0);
+  console.log("After push_front(0):", list1.toArray());
+
+  list1.pop_front();
+  console.log("After pop_front():", list1.toArray());
+
+  const popped = list1.pop_back();
+  console.log(`After pop_back(): removed ${popped}, now ->`, list1.toArray());
+
+  list1.insert(1, 99);
+  console.log("After insert(1, 99):", list1.toArray());
+
+  list1.erase(1);
+  console.log("After erase(1):", list1.toArray());
+
+  list1.reverse();
+  console.log("After reverse():", list1.toArray());
+
+  const list2 = SinglyLinkedList.fromArray([5, 5, 5]);
+  console.log("Before remove(5):", list2.toArray());
+  const removed = list2.remove(5);
+  console.log(`After remove(5): removed ${removed} elements ->`, list2.toArray());
+
+  const list3 = SinglyLinkedList.fromArray([4, 1, 3, 2]);
+  console.log("Before sort:", list3.toArray());
+  list3.sort();
+  console.log("After sort():", list3.toArray());
+
+  const a = SinglyLinkedList.fromArray([1, 4, 6]);
+  const b = SinglyLinkedList.fromArray([2, 3, 5]);
+  console.log("\nList A:", a.toArray());
+  console.log("List B:", b.toArray());
+  a.merge_list(b);
+  console.log("After merge_list():", a.toArray());
+
+  const arr = [];
+  for (const x of a) arr.push(x);
+  console.log("Iteration test:", arr);
+
+  console.log("\n✅ All tests completed successfully!");
+}
+
+testLinkedList();
