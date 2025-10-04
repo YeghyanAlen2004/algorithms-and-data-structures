@@ -22,9 +22,9 @@ class Node {
     this.prev = prev;
   }
 }
+
 🧠 Class Definition
-js
-Копировать код
+--------------------------------------------------------------------------------------------
 class DoublyLinkedList {
   #head = null;
   #tail = null;
@@ -47,28 +47,30 @@ class DoublyLinkedList {
   reverse() {}
   sort(compareFn) {}
 }
+
 🚀 Features
-Method	Description
-constructor(iterables)	Initialize with iterable or single element.
-size()	Returns the number of nodes.
-isEmpty()	Checks if the list is empty.
-clear()	Clears all nodes.
-push_front(value)	Adds an element to the front.
-push_back(value)	Adds an element to the back.
-pop_front()	Removes the first element.
-pop_back()	Removes the last element.
-front()	Returns the first element’s value.
-back()	Returns the last element’s value.
-at(index)	Returns element at index.
-insert(index, value)	Inserts value at index.
-erase(index)	Removes value at index.
-remove(value, equals)	Removes all matching elements.
-reverse()	Reverses the list.
-sort(compareFn)	Stable merge sort implementation.
+--------------------------------------------------------------------------------------------
+| Method                   | Description                                 |
+| ------------------------ | ------------------------------------------- |
+| `constructor(iterables)` | Initialize with iterable or single element. |
+| `size()`                 | Returns the number of nodes.                |
+| `isEmpty()`              | Checks if the list is empty.                |
+| `clear()`                | Clears all nodes.                           |
+| `push_front(value)`      | Adds an element to the front.               |
+| `push_back(value)`       | Adds an element to the back.                |
+| `pop_front()`            | Removes the first element.                  |
+| `pop_back()`             | Removes the last element.                   |
+| `front()`                | Returns the first element’s value.          |
+| `back()`                 | Returns the last element’s value.           |
+| `at(index)`              | Returns element at index.                   |
+| `insert(index, value)`   | Inserts value at index.                     |
+| `erase(index)`           | Removes value at index.                     |
+| `remove(value, equals)`  | Removes all matching elements.              |
+| `reverse()`              | Reverses the list.                          |
+| `sort(compareFn)`        | Stable merge sort implementation.           |
 
 🧪 Example Usage
-js
-Копировать код
+--------------------------------------------------------------------------------------------
 const list = new DoublyLinkedList([1, 2, 3]);
 
 list.push_front(0);
@@ -83,26 +85,31 @@ list.insert(1, 99); // [1, 99, 2, 3]
 list.erase(1);      // [1, 2, 3]
 list.reverse();     // [3, 2, 1]
 list.sort();        // [1, 2, 3]
+
+
 🧠 Iteration Support
-js
-Копировать код
+--------------------------------------------------------------------------------------------
 for (const value of list) {
   console.log(value);
 }
 
 // or
 console.log([...list]);
+
+
 📊 Performance
-Operation	Complexity	Notes
-push_front / push_back	O(1)	Constant-time insertions
-pop_front / pop_back	O(1)	Constant-time removals
-insert / erase / at	O(n)	Optimized with bidirectional traversal
-reverse	O(n)	In-place
-sort	O(n log n)	Stable merge sort
+--------------------------------------------------------------------------------------------
+| Operation                | Complexity     | Notes                                  |
+| ------------------------ | -------------- | -------------------------------------- |
+| `push_front / push_back` | **O(1)**       | Constant-time insertions               |
+| `pop_front / pop_back`   | **O(1)**       | Constant-time removals                 |
+| `insert / erase / at`    | **O(n)**       | Optimized with bidirectional traversal |
+| `reverse`                | **O(n)**       | In-place                               |
+| `sort`                   | **O(n log n)** | Stable merge sort                      |
 
 🧬 Example Test Output
-less
-Копировать код
+--------------------------------------------------------------------------------------------
+
 🔍 Running DoublyLinkedList tests...
 
 Initial: [1, 2, 3]
@@ -131,23 +138,29 @@ Iterating with for...of:
  → C
 
 ✅ All manual tests completed successfully!
+
+
 💡 Design Notes
-Fully encapsulated using #private fields
+--------------------------------------------------------------------------------------------
 
-Safe memory management (no dangling references)
+>   Fully encapsulated using #private fields
 
-Compatible with modern Node.js and browsers
+>   Safe memory management (no dangling references)
 
-No external dependencies
+>   Compatible with modern Node.js and browsers
 
-Clean and readable API
+>   No external dependencies
+
+>   Clean and readable API
 
 👨‍💻 Author
+--------------------------------------------------------------------------------------------
 Alen Yeghyan
 📍 Yerevan, Armenia
-💻 Developer • Algorithm Enthusiast • Minimalist in Code
+💻 Developer • Minimalist in Code
 
 ⚖️ License
+--------------------------------------------------------------------------------------------
 MIT License © 2025 Alen Yeghyan
 
 “A good data structure is not only functional — it’s elegant.”
