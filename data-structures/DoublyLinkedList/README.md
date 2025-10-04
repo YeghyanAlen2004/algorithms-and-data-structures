@@ -5,14 +5,14 @@
 
 ---
 
-## 🧩 Overview
+ 🧩 Overview
 
 A **Doubly Linked List** is a linear data structure where each node points to both its previous and next neighbor.  
 This implementation is written with modern **ES2024+** features like private fields (`#`), iterators, and class syntax.
 
 ---
 
-## ⚙️ Node Structure
+ ⚙️ Node Structure
 
 ```js
 class Node {
