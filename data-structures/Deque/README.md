@@ -215,9 +215,19 @@ Tips:
 - [ ] Benchmarks & charts for common workloads  
 - [ ] Optional `from(iterable)` ctor
 
+## 🧠 Author
+
 ---
 
-## 📄 License
+**Alen Yeghyan**  
+💻 Student & Web Developer  
+📍 Yerevan, Armenia  
+⚡ Passionate about algorithms, data structures, and elegant code design.
+
+
+---
+
+## 🪶 License
 
 MIT © 2025 ALEN YEGHYAN
 
